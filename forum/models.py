@@ -2,8 +2,6 @@ from django.db import models
 from django.conf import settings
 
 # Create your models here.
-# question class
-
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100)
