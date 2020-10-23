@@ -8,6 +8,10 @@ class Category(models.Model):
     category_name = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return '%s' % (self.category_name)
+        # return '%s %s' % (self.first_name, self.last_name)
+
 
 class Question(models.Model):
     user_id = models.ForeignKey(
@@ -17,6 +21,9 @@ class Question(models.Model):
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     question_text = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s' % (self.question_text)
 
 
 class Answer(models.Model):
@@ -28,8 +35,14 @@ class Answer(models.Model):
     answer_text = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return '%s' % (self.answer_text)
+
 
 class Update(models.Model):
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     update_text = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s' % (self.update_text)
