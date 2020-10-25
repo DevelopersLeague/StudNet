@@ -22,7 +22,7 @@ def registerPage(request):
                 messages.success(request, 'Account was created for '+user_msg )
 
                 # redirecting user after successful login
-                return redirect('login')   # you can also place home here  
+                return redirect('login')   # you can also place landingPage here  
 
         context = {'form':form}
         return render(request, 'forum/register.html', context)
@@ -40,7 +40,7 @@ def loginPage(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('home')    # landingpage should come here
+                return redirect('home')    # landingpage should come here DOUBTFULL, earlier it was home
             else:
                 messages.info(request, 'Username OR Password is incorrect')
 
@@ -49,7 +49,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('landingPage')
 
 # @login_required(login_url='landing')
 # put the below line above every view that you want to restrict if the user hasn't loggedin

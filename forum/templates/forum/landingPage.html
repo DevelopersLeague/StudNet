@@ -11,7 +11,7 @@
 
   <!-- Bootstrap CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"}>
-
+  
   <!-- Custom fonts and icons -->
   <link href = "{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
   <link href= "{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
@@ -21,9 +21,6 @@
   <link href= "{% static 'css/landing-page.min.css' %}" rel="stylesheet">
 </head>
 
-<style>
-
-</style>
 
 <body>
 
@@ -41,12 +38,12 @@
             <div class="form-row">
               <div class="col-sm-6 col-md-3 col-xl-3">
                  <!-- <button type="submit" class="btn btn-block btn-md btn-primary sign-up" data-toggle="modal" data-target="#signup">Sign up!<i class="fas fa-user-plus ml-3"></i></button> -->
-                 <a href="#" class="btn btn-primary sign-up" data-toggle="modal" data-target="#signup"> Signup<i class="fas fa-user-plus ml-3"></i></a>
+                 <a href="./register" class="btn btn-primary sign-up"> Signup<i class="fas fa-user-plus ml-3"></i></a>
               </div> 
               <div class="col-sm-6 col-md-3 col-xl-3">
                 <!-- <button type="submit" class="btn btn-block btn-md btn-primary log-in ">Log in!</button> -->
                 <div class="text-center">
-                  <a href="" class="btn btn-primary log-in" data-toggle="modal" data-target="#signin">Signin<i class="fas fa-sign-in-alt ml-3"></i></a>
+                  <a href="./login" class="btn btn-primary log-in">Login<i class="fas fa-sign-in-alt ml-3"></i></a>
               </div>
               </div>
             </div>
@@ -96,14 +93,14 @@
     <div class="container-fluid p-0">
       <div class="row no-gutters">
 
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('./img/education.svg');"></div>
+        <div class="col-lg-6 order-lg-2 text-white showcase-img svg-grid-1" ></div>
         <div class="col-lg-6 order-lg-1 my-auto showcase-text">
           <h2>Grab those opportunities!!</h2>
           <p class="lead mb-0">Utilise the opportunities to explore your interests</p>
         </div>
       </div>
       <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/two-way-communication.svg');"></div>
+        <div class="col-lg-6 text-white showcase-img svg-grid-2"></div>
         <div class="col-lg-6 my-auto showcase-text">
           <h2>Improve Soft skills</h2>
           <p class="lead mb-0">Get to know about upcoming debates, MUNs, cultural fests, etc and participate develop your personality and be a better communicator</p>
@@ -200,6 +197,7 @@
   </div>
 
 <!-- content of signin page -->
+{% comment %}  
 <div class="modal fade" id="signin">
   <div class="modal-dialog">
       <div class="modal-content">
@@ -227,17 +225,13 @@
         <div class="modal-footer d-flex justify-content-center">
             <button class="btn btn-primary">Signin</button>
         </div>
-        </div>
-          </div>
-        </div>
-</body>
-
-
-
-
+      </div>
+    </div>
+  </div>
+{% endcomment %}
   <!-- Bootstrap JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
 
 </body>
 

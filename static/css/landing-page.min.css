@@ -165,3 +165,11 @@ input-sign{
     border-bottom: #212529 !important;
     border-bottom: 2px !important;
 }
+
+.svg-grid-1{
+    background-image: url(../svg/education.svg);
+}
+
+.svg-grid-2{
+    background-image: url(../svg/two-way-communication.svg);
+}
