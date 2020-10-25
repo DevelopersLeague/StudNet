@@ -1,0 +1,240 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Landing Page</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="{{STATIC_URL} 'vendor/bootstrap/css/bootstrap.min.css'}" rel="stylesheet">
+
+  <!-- Custom fonts and icons -->
+  <link href= "{% 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href= "{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- CSS styles -->
+  <link href= "{% static 'css/landing-page.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Masthead -->
+  <header class="masthead text-white text-center">
+    <!-- <div class="overlay"></div> -->
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">Student Portal </h1>
+          <h3>A webapp for students, by students</h3>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <form action="" method="POST">
+            <div class="form-row">
+              <div class="col-sm-6 col-md-3 col-xl-3">
+                 <!-- <button type="submit" class="btn btn-block btn-md btn-primary sign-up" data-toggle="modal" data-target="#signup">Sign up!<i class="fas fa-user-plus ml-3"></i></button> -->
+                 <a href="#" class="btn btn-primary sign-up" data-toggle="modal" data-target="#signup"> Signup<i class="fas fa-user-plus ml-3"></i></a>
+              </div> 
+              <div class="col-sm-6 col-md-3 col-xl-3">
+                <!-- <button type="submit" class="btn btn-block btn-md btn-primary log-in ">Log in!</button> -->
+                <div class="text-center">
+                  <a href="" class="btn btn-primary log-in" data-toggle="modal" data-target="#signin">Signin<i class="fas fa-sign-in-alt ml-3"></i></a>
+              </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Icons Grid -->
+  <section class="features-icons bg-light text-center ">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-star m-auto text-primary"></i>
+            </div>
+            <h3>Become known!!</h3>
+            <p class="lead mb-0">Post a question, answer question, help your college mates! Build connections, make projects, help each other and much more!!</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-envelope m-auto text-primary"></i>
+            </div>
+            <h3>Updates</h3>
+            <p class="lead mb-0">Share and receive updates regarding internships, college fests and other events</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-graduation m-auto text-primary"></i>
+            </div>
+            <h3>Help your juniors!</h3>
+            <p class="lead mb-0">Share your experineces about internships, job-offers, college-life</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SVG - text grid -->
+  <section class="showcase">
+    <div class="container-fluid p-0">
+      <div class="row no-gutters">
+
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('./img/education.svg');"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <h2>Grab those opportunities!!</h2>
+          <p class="lead mb-0">Utilise the opportunities to explore your interests</p>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/two-way-communication.svg');"></div>
+        <div class="col-lg-6 my-auto showcase-text">
+          <h2>Improve Soft skills</h2>
+          <p class="lead mb-0">Get to know about upcoming debates, MUNs, cultural fests, etc and participate develop your personality and be a better communicator</p>
+        </div>
+      </div>
+      <!--
+      <div class="row no-gutters">
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('');"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <h2>Easy to Use &amp; Lorem ipsum dolor sit.</h2>
+          <p class="lead mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat sunt nemo consectetur nulla adipisci cupiditate possimus sapiente eius!</p>
+        </div>
+      </div>
+    -->
+    </div>
+  </section>
+
+  
+  <!-- Email Update  -->
+  <section class="call-to-action text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h2 class="mb-4">Get daily updates on your email</h2>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <form>
+            <div class="form-row">
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
+              </div>
+              <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Sign up page content     -->
+  <div class="modal fade" id="signup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title text-center w-100 font-weight-bold">Sign up</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">&times;</button>
+            </div>
+            <form action="" method="post">
+            <div class="modal-body mx-3">
+                <div class="form-group row">
+                    <!-- to divide forms into several rows we can apply class form grp and row class  -->
+                    <label for="name" class="col-md-2 col-form-label">Name</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label for="email" class="col-md-2 col-form-label">Email</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="yearOfAdmission" class="col-md-2 col-form-label">Year of Admission </label>
+                    <div class="col-md-10">
+                        <input type="number" class="form-control" id="yearOfAdmission" name="yearOfAdmission" placeholder="Enter Year of Admission eg: 2023" min="2017" max="2030">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-md-2 col-form-label">Password </label>
+                    <div class="col-md-10">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter valid password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cpassword" class="col-md-2 col-form-label">Confirm Password </label>
+                    <div class="col-md-10">
+                        <input type="password" class="form-control" id="cpassword" name="password" placeholder="Enter valid password">
+                    </div>
+                </div>
+              </div>
+            </form>
+            <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-primary">Signup</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+  </div>
+
+<!-- content of signin page -->
+<div class="modal fade" id="signin">
+  <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title text-center w-100 font-weight-bold">Sign in</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">&times;</button>
+        </div>
+        <form action="" method="post">
+        <div class="modal-body mx-3">
+            <div class="form-group row">
+                <!-- to divide forms into several rows we can apply class form grp and row class  -->
+                <label for="email" class="col-md-2 col-form-label">Email</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter registered e-mail ">
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="password" class="col-md-2 col-form-label">Password </label>
+              <div class="col-md-10">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Enter valid password">
+              </div>
+            </div>
+        </div>
+      </form>
+        <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-primary">Signin</button>
+        </div>
+        </div>
+          </div>
+        </div>
+</body>
+
+
+
+
+  <!-- Bootstrap JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
