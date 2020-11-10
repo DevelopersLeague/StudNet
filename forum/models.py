@@ -46,3 +46,21 @@ class Update(models.Model):
 
     def __str__(self):
         return '%s' % (self.update_text)
+
+
+class QuestionReport(models.Model):
+    user_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+
+class AnswerReport(models.Model):
+    user_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    Answer_id = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
