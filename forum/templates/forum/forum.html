@@ -1,0 +1,7 @@
+{% extends "forum/main.html" %} 
+    {% block content %} 
+        <h1>Questions page</h1>
+        {% for question in questions%}
+            <h2>{{question.question_text}}</h2>
+        {% endfor %} 
+    {% endblock %}

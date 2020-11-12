@@ -1,0 +1,9 @@
+{%extends 'forum/main.html'%}
+{% block content %}
+    <h1>{{question.question_text}}</h1>
+    {% for answer in answers %}
+    <div class="answer">
+        <p>{{answer.answer_text}}</p>
+    </div>
+    {% endfor %}
+{% endblock %}
