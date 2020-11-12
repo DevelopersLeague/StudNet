@@ -84,7 +84,6 @@ def forum(request, page):
                'next_page': min(page+1, max_page),
                'previous_page': max(page-1, 1)
                }
-    print(max_page)
     return render(request, 'forum/forum.html', context)
 
 

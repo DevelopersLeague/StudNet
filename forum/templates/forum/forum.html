@@ -4,6 +4,7 @@
         {% for question in questions%}
             <div class="question">
                 <h2><a href="{% url 'question_display' question.id %}">{{question.question_text}}</a></h2>
+                <p>asked by: {{question.user_id}}</p>
             </div>
         {% endfor %} 
         <div class="navigation">
