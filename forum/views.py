@@ -76,7 +76,15 @@ def forum(request, page):
     questions = Question.objects.all().order_by('-created_on')
     min_index = (page-1)*10
     max_index = min((page*10)-1, len(questions)-1)
-    context = {'questions': questions[min_index:max_index+1]}
+    if len(questions) % 10 == 0:
+        max_page = len(questions)//10
+    else:
+        max_page = len(questions)//10 + 1
+    context = {'questions': questions[min_index:max_index+1],
+               'next_page': min(page+1, max_page),
+               'previous_page': max(page-1, 1)
+               }
+    print(max_page)
     return render(request, 'forum/forum.html', context)
 
 

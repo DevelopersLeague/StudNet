@@ -2,6 +2,13 @@
     {% block content %} 
         <h1>Questions page</h1>
         {% for question in questions%}
-            <h2>{{question.question_text}}</h2>
+            <div class="question">
+                <h2><a href="{% url 'question_display' question.id %}">{{question.question_text}}</a></h2>
+            </div>
         {% endfor %} 
+        <div class="navigation">
+            <a href="{% url 'forum' previous_page %}">previous</a>
+            <a href="{% url 'forum' next_page %}">next</a>
+        </div>
+
     {% endblock %}
