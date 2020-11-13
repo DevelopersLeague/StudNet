@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages  # for flash messages
@@ -111,10 +111,11 @@ def question_display(request, id):
 
 @login_required(login_url='login')
 def question_create(request):
-    form = questionCreateForm()
+    form = QuestionCreateForm()
     # if post
     if request.method == 'POST':
-        form = questionCreateForm(request.POST)
+        form = QuestionCreateForm(request.POST)
+        # form.user_id = request.user
         if form.is_valid():
             form.save()
             # redirect to forum home
@@ -127,9 +128,11 @@ def question_create(request):
 @login_required(login_url='login')
 def question_update(request, id):
     question = Question.objects.get(id=id)
-    form = questionCreateForm(instance=question)
+    if(request.user != question.user_id):
+        return redirect("question_display", id=id)
+    form = QuestionCreateForm(instance=question)
     if request.method == 'POST':
-        form = questionCreateForm(request.POST, instance=question)
+        form = QuestionCreateForm(request.POST, instance=question)
         if form.is_valid():
             form.save()
             # redirect to question page
@@ -142,5 +145,15 @@ def question_update(request, id):
 def question_delete(request, id):
     if request.method == 'POST':
         question = Question.objects.get(id=id)
+        if(request.user != question.user_id):
+            return redirect("question_display", id=id)
         question.delete()
         return redirect('forum', page=1)
+    else:
+        raise Http404("page not found")
+
+
+@login_required(login_url='login')
+def answer_create(request, id):
+    context = {}
+    return render(request, "forum/create_answer.html", context)

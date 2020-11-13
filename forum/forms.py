@@ -13,8 +13,14 @@ class CreateUserForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password1']
 
 
-class questionCreateForm(ModelForm):
+class QuestionCreateForm(ModelForm):
     class Meta:
         model = Question
         # fields = ['category_id', 'question_text']
+        fields = "__all__"
+
+
+class AnswerCreateForm(ModelForm):
+    class Meta:
+        model = Answer
         fields = "__all__"
