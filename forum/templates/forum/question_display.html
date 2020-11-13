@@ -2,7 +2,7 @@
 {% block content %}
     <div class="title">
         <h1>{{question.question_text}}</h1>
-        <p>{{question.user_id}}</p>
+        <p>asked by: {{question.user_id}}</p>
         {% if current_user == author %}
             <a href="{% url 'question_update' question.id %}">update</a>
             <form action="{% url 'question_delete' question.id %}" method="POST">
