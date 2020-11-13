@@ -1,6 +1,7 @@
 {% extends "forum/main.html" %} 
     {% block content %} 
         <h1>Questions page</h1>
+        <h2><a href="{% url 'question_create' %}">ask a question</a></h2>
         {% for question in questions%}
             <div class="question">
                 <h2><a href="{% url 'question_display' question.id %}">{{question.question_text}}</a></h2>

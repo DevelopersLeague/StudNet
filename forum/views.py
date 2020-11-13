@@ -97,18 +97,42 @@ def forum(request, page):
 @login_required(login_url='login')
 def question_display(request, id):
     question = Question.objects.get(id=id)
+    author = question.user_id
+    current_user = request.user
     answers = question.answer_set.all()
-    context = {'question': question, 'answers': answers}
+    context = {
+               'question': question,
+               'answers': answers,
+               'author': author,
+               'current_user': current_user
+               }
     return render(request, 'forum/question_display.html', context)
 
 
 @login_required(login_url='login')
 def question_create(request):
     form = questionCreateForm()
+    # if post
     if request.method == 'POST':
         form = questionCreateForm(request.POST)
         if form.is_valid():
             form.save()
+            # redirect to forum home
             return redirect("forum", page=1)
+    # if get
+    context = {'form': form}
+    return render(request, 'forum/question_create.html', context)
+
+
+@login_required(login_url='login')
+def question_update(request, id):
+    question = Question.objects.get(id=id)
+    form = questionCreateForm(instance=question)
+    if request.method == 'POST':
+        form = questionCreateForm(request.POST, instance=question)
+        if form.is_valid():
+            form.save()
+            # redirect to question page
+            return redirect("question_display", id=id)
     context = {'form': form}
     return render(request, 'forum/question_create.html', context)

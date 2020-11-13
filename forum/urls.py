@@ -10,6 +10,8 @@ urlpatterns = [
     path('forum/<int:page>/', views.forum, name='forum'),
     path('forum/question/<int:id>/',
          views.question_display, name='question_display'),
-    path('forum/question/create', views.question_create, name='question_create')
+    path('forum/question/create', views.question_create, name='question_create'),
+    path('forum/question/update/<int:id>/',
+         views.question_update, name='question_update')
 
 ]
