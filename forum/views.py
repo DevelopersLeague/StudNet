@@ -101,11 +101,11 @@ def question_display(request, id):
     current_user = request.user
     answers = question.answer_set.all()
     context = {
-               'question': question,
-               'answers': answers,
-               'author': author,
-               'current_user': current_user
-               }
+        'question': question,
+        'answers': answers,
+        'author': author,
+        'current_user': current_user
+    }
     return render(request, 'forum/question_display.html', context)
 
 
@@ -136,3 +136,11 @@ def question_update(request, id):
             return redirect("question_display", id=id)
     context = {'form': form}
     return render(request, 'forum/question_create.html', context)
+
+
+@login_required(login_url='login')
+def question_delete(request, id):
+    if request.method == 'POST':
+        question = Question.objects.get(id=id)
+        question.delete()
+        return redirect('forum', page=1)

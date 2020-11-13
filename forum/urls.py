@@ -12,6 +12,8 @@ urlpatterns = [
          views.question_display, name='question_display'),
     path('forum/question/create', views.question_create, name='question_create'),
     path('forum/question/update/<int:id>/',
-         views.question_update, name='question_update')
+         views.question_update, name='question_update'),
+    path('forum/question/delete/<int:id>/',
+         views.question_delete, name='question_delete')
 
 ]

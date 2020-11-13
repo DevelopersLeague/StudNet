@@ -5,6 +5,10 @@
         <p>{{question.user_id}}</p>
         {% if current_user == author %}
             <a href="{% url 'question_update' question.id %}">update</a>
+            <form action="{% url 'question_delete' question.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="delete">
+            </form>
         {% endif %}
     </div>
     {% for answer in answers %}
