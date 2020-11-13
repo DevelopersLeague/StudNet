@@ -8,6 +8,8 @@ urlpatterns = [
     path('', views.landingPage, name='landingPage'),
     path('home/', views.home, name='home'),
     path('forum/<int:page>/', views.forum, name='forum'),
-    path('question/<int:id>/', views.question_display, name='question_display')
+    path('forum/question/<int:id>/',
+         views.question_display, name='question_display'),
+    path('forum/question/create', views.question_create, name='question_create')
 
 ]

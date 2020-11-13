@@ -4,7 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages  # for flash messages
 from .models import *
-from .forms import CreateUserForm
+# from .forms import CreateUserForm
+from .forms import *
+
+
 # for restricting users without login
 from django.contrib.auth.decorators import login_required
 
@@ -59,6 +62,10 @@ def logoutUser(request):
     logout(request)
     return redirect('landingPage')
 
+
+def landingPage(request):
+    return render(request, 'forum/landingPage.html', {})
+
 # @login_required(login_url='landing')
 # put the below line above every view that you want to restrict if the user hasn't loggedin
 # these are nothing but login decorators
@@ -95,5 +102,13 @@ def question_display(request, id):
     return render(request, 'forum/question_display.html', context)
 
 
-def landingPage(request):
-    return render(request, 'forum/landingPage.html', {})
+@login_required(login_url='login')
+def question_create(request):
+    form = questionCreateForm()
+    if request.method == 'POST':
+        form = questionCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("forum", page=1)
+    context = {'form': form}
+    return render(request, 'forum/question_create.html', context)
