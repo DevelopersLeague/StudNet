@@ -94,7 +94,7 @@ def forum(request, page):
     return render(request, 'forum/forum.html', context)
 
 #
-# answer crud
+# question crud ----------------------------------------------------------------
 #
 
 
@@ -119,11 +119,15 @@ def question_display(request, id):
     question = Question.objects.get(id=id)
     author = question.user_id
     current_user = request.user
-    answers = question.answer_set.all()
+    answers = question.answer_set.all().order_by('-created_on')
+    # answer_authors = []
+    # for answer in answers:
+    #     answer_authors.append(answer.user_id)
     context = {
         'question': question,
         'answers': answers,
         'author': author,
+        # 'answer_authors': answer_authors,
         'current_user': current_user
     }
     return render(request, 'forum/question_display.html', context)
@@ -156,10 +160,8 @@ def question_delete(request, id):
     else:
         raise Http404("page not found")
 
-#
-# answer crud
-#
 
+# answer crud ------------------------------------------------------------------
 
 @login_required(login_url='login')
 def answer_create(request, question_id):

@@ -22,6 +22,15 @@
         <div class="answer">
             <p>{{answer.answer_text}}</p>
             <p>answered by: {{answer.user_id}}</p>
+
+        {% if current_user == answer.user_id %}
+            <a href="{% url 'answer_update' answer.id %}">update</a>
+            <form action="{% url 'answer_delete' answer.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="delete">
+            </form>
+        {% endif %}
+
         </div>
     {% endfor %}
 
