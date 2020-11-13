@@ -1,6 +1,7 @@
 {%extends 'forum/main.html'%}
 {% block content %}
 
+    <!-- display the question -->
     <div class="title">
 
         <h1>{{question.question_text}}</h1>
@@ -23,13 +24,13 @@
             <p>{{answer.answer_text}}</p>
             <p>answered by: {{answer.user_id}}</p>
 
-        {% if current_user == answer.user_id %}
-            <a href="{% url 'answer_update' answer.id %}">update</a>
-            <form action="{% url 'answer_delete' answer.id %}" method="POST">
-                {% csrf_token %}
-                <input type="submit" value="delete">
-            </form>
-        {% endif %}
+            {% if current_user == answer.user_id %}
+                <a href="{% url 'answer_update' answer.id %}">update</a>
+                <form action="{% url 'answer_delete' answer.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="delete">
+                </form>
+            {% endif %}
 
         </div>
     {% endfor %}
