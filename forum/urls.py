@@ -19,7 +19,10 @@ urlpatterns = [
          views.question_delete, name='question_delete'),
     # answer crud
     path('forum/answer/create/<int:question_id>',
-         views.answer_create, name='answer_create')
-
+         views.answer_create, name='answer_create'),
+    path('forum/answer/update/<int:answer_id>',
+         views.answer_update, name='answer_update'),
+    path('forum/answer/delete/<int:answer_id>',
+         views.answer_delete, name='answer_delete')
 
 ]

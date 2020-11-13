@@ -1,8 +1,12 @@
 {%extends 'forum/main.html'%}
 {% block content %}
+
     <div class="title">
+
         <h1>{{question.question_text}}</h1>
         <p>asked by: {{question.user_id}}</p>
+        <p><a href="{% url 'answer_create' question.id %}">answer this question</a></p>
+
         {% if current_user == author %}
             <a href="{% url 'question_update' question.id %}">update</a>
             <form action="{% url 'question_delete' question.id %}" method="POST">
@@ -10,11 +14,15 @@
                 <input type="submit" value="delete">
             </form>
         {% endif %}
+
     </div>
+
+    <!-- display answers -->
     {% for answer in answers %}
         <div class="answer">
             <p>{{answer.answer_text}}</p>
             <p>answered by: {{answer.user_id}}</p>
         </div>
     {% endfor %}
+
 {% endblock %}

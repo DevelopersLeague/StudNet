@@ -93,6 +93,26 @@ def forum(request, page):
                }
     return render(request, 'forum/forum.html', context)
 
+#
+# answer crud
+#
+
+
+@login_required(login_url='login')
+def question_create(request):
+    form = QuestionCreateForm(initial={'user_id': request.user})
+    # if post
+    if request.method == 'POST':
+        form = QuestionCreateForm(request.POST)
+        # form.user_id = request.user
+        if form.is_valid():
+            form.save()
+            # redirect to forum home
+            return redirect("forum", page=1)
+    # if get
+    context = {'form': form}
+    return render(request, 'forum/question_create.html', context)
+
 
 @login_required(login_url='login')
 def question_display(request, id):
@@ -107,22 +127,6 @@ def question_display(request, id):
         'current_user': current_user
     }
     return render(request, 'forum/question_display.html', context)
-
-
-@login_required(login_url='login')
-def question_create(request):
-    form = QuestionCreateForm()
-    # if post
-    if request.method == 'POST':
-        form = QuestionCreateForm(request.POST)
-        # form.user_id = request.user
-        if form.is_valid():
-            form.save()
-            # redirect to forum home
-            return redirect("forum", page=1)
-    # if get
-    context = {'form': form}
-    return render(request, 'forum/question_create.html', context)
 
 
 @login_required(login_url='login')
@@ -152,8 +156,52 @@ def question_delete(request, id):
     else:
         raise Http404("page not found")
 
+#
+# answer crud
+#
+
 
 @login_required(login_url='login')
-def answer_create(request, id):
-    context = {}
-    return render(request, "forum/create_answer.html", context)
+def answer_create(request, question_id):
+    form = AnswerCreateForm(
+        initial={'question_id': question_id, 'user_id': request.user})
+    # if post
+    if request.method == 'POST':
+        form = AnswerCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # redirect to forum home
+            return redirect("question_display", id=question_id)
+    # if get
+    context = {'form': form}
+    return render(request, 'forum/answer_create.html', context)
+
+
+@login_required(login_url='login')
+def answer_update(request, answer_id):
+    answer = Answer.objects.get(id=answer_id)
+    if(request.user != answer.user_id):
+        return redirect("question_display", answer_id=answer.question_id)
+    form = AnswerCreateForm(instance=answer)
+    if request.method == 'POST':
+        form = AnswerCreateForm(request.POST, instance=answer)
+        if form.is_valid():
+            form.save()
+            # redirect to question page
+            return redirect("question_display", id=answer.question_id.id)
+    context = {'form': form}
+    return render(request, 'forum/answer_create.html', context)
+
+
+@login_required(login_url='login')
+def answer_delete(request, answer_id):
+    if request.method == 'POST':
+        answer = Answer.objects.get(id=answer_id)
+        current_question_id = answer.question_id.id
+        if(request.user != answer.user_id):
+            return redirect("question_display", id=current_question_id)
+        answer.delete()
+        return redirect('question_display', id=current_question_id)
+    else:
+        print("invalid access")
+        raise Http404("page not found")
