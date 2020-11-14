@@ -100,15 +100,19 @@ def forum(request, page):
 
 @login_required(login_url='login')
 def question_create(request):
-    form = QuestionCreateForm(initial={'user_id': request.user})
+    form = QuestionCreateForm()
     # if post
     if request.method == 'POST':
         form = QuestionCreateForm(request.POST)
-        # form.user_id = request.user
         if form.is_valid():
-            form.save()
+            # filling the automatic fields
+            question = form.save(commit=False)
+            question.user_id = request.user
+            question.save()
             # redirect to forum home
             return redirect("forum", page=1)
+        else:
+            print("form not valid")
     # if get
     context = {'form': form}
     return render(request, 'forum/question_create.html', context)
@@ -136,6 +140,7 @@ def question_display(request, id):
 @login_required(login_url='login')
 def question_update(request, id):
     question = Question.objects.get(id=id)
+    # redirect if question is not owned by the current user
     if(request.user != question.user_id):
         return redirect("question_display", id=id)
     form = QuestionCreateForm(instance=question)
@@ -165,15 +170,21 @@ def question_delete(request, id):
 
 @login_required(login_url='login')
 def answer_create(request, question_id):
-    form = AnswerCreateForm(
-        initial={'question_id': question_id, 'user_id': request.user})
+    question = Question.objects.get(id=question_id)
+    # print(question)
+    form = AnswerCreateForm()
     # if post
     if request.method == 'POST':
         form = AnswerCreateForm(request.POST)
         if form.is_valid():
+            answer = form.save(commit=False)
+            answer.user_id = request.user
+            answer.question_id = question
             form.save()
             # redirect to forum home
             return redirect("question_display", id=question_id)
+        else:
+            print("form not valid")
     # if get
     context = {'form': form}
     return render(request, 'forum/answer_create.html', context)

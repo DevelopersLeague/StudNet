@@ -2,7 +2,14 @@
     {% block content %}
         <form action="" method="POST">
             {% csrf_token %}
-            {{form}}
+            <p>
+                {{form.category_id.label}}
+                {{form.category_id}}
+            </p>
+            <p>
+                {{form.question_text.label}}
+                {{form.question_text}}
+            </p>
             <input type="submit" value="submit">
         </form>
     {% endblock %}

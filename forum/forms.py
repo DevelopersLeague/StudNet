@@ -16,11 +16,10 @@ class CreateUserForm(UserCreationForm):
 class QuestionCreateForm(ModelForm):
     class Meta:
         model = Question
-        # fields = ['category_id', 'question_text']
-        fields = "__all__"
+        fields = ['category_id', 'question_text']
 
 
 class AnswerCreateForm(ModelForm):
     class Meta:
         model = Answer
-        fields = "__all__"
+        fields = ['answer_text']
