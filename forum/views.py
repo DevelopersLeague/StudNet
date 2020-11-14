@@ -229,9 +229,10 @@ def answer_delete(request, answer_id):
 # login is not required to see updates
 
 
+@login_required(login_url='login')
 def updates(request):
     updates = Update.objects.all().order_by('-created_on')
     context = {'updates': updates}
     return render(request, 'forum/updates.html', context)
 
-# searching ------------------------------------------------------------------
+# searching --------------------------------------------------------------------
