@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages  # for flash messages
 from .models import *
+from .filters import *
 # from .forms import CreateUserForm
 from .forms import *
 
@@ -81,6 +82,10 @@ def home(request):
 @login_required(login_url='login')
 def forum(request, page):
     questions = Question.objects.all().order_by('-created_on')
+    # for searching
+    question_filter = QuestionFilter(request.GET, queryset=questions)
+    questions = question_filter.qs
+
     min_index = (page-1)*10
     max_index = min((page*10)-1, len(questions)-1)
     if len(questions) % 10 == 0:
@@ -89,7 +94,8 @@ def forum(request, page):
         max_page = len(questions)//10 + 1
     context = {'questions': questions[min_index:max_index+1],
                'next_page': min(page+1, max_page),
-               'previous_page': max(page-1, 1)
+               'previous_page': max(page-1, 1),
+               'question_filter': question_filter
                }
     return render(request, 'forum/forum.html', context)
 
@@ -227,3 +233,5 @@ def updates(request):
     updates = Update.objects.all().order_by('-created_on')
     context = {'updates': updates}
     return render(request, 'forum/updates.html', context)
+
+# searching ------------------------------------------------------------------

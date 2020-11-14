@@ -2,6 +2,20 @@
     {% block content %} 
         <h1>Questions page</h1>
         <h2><a href="{% url 'question_create' %}">ask a question</a></h2>
+
+        <!-- searching -->
+        <div class="search-form">
+            <form action="" method="GET">
+                {% csrf_token %}
+                <p>category</p>
+                {{question_filter.form.category_id}}
+                <p>search questions</p>
+                {{question_filter.form.question_text}}
+                <input type="submit" value="search">
+            </form>
+        </div>
+
+        <!-- question listing -->
         {% for question in questions%}
             <div class="question">
                 <h2><a href="{% url 'question_display' question.id %}">{{question.question_text}}</a></h2>

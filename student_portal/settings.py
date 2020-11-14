@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'forum.apps.ForumConfig',
-    'forum'
+    'forum',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -122,4 +123,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ( os.path.join('static'), )
+STATICFILES_DIRS = (os.path.join('static'), )
