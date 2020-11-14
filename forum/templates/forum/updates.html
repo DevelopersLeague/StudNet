@@ -1,0 +1,10 @@
+{% extends "forum/main.html" %}
+    {% block content %}
+        <h1>updates</h1>
+        {% for update in updates %}
+            <div class="update">
+                <h2>{{update.update_text}}</h2>
+                <p>category: {{update.category_id}}</p>
+            </div>
+        {% endfor %}
+    {% endblock %}

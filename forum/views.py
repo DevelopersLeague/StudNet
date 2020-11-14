@@ -218,3 +218,12 @@ def answer_delete(request, answer_id):
     else:
         print("invalid access")
         raise Http404("page not found")
+
+# updates ----------------------------------------------------------------------
+# login is not required to see updates
+
+
+def updates(request):
+    updates = Update.objects.all().order_by('-created_on')
+    context = {'updates': updates}
+    return render(request, 'forum/updates.html', context)
