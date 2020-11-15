@@ -1,0 +1,9 @@
+{% extends "forum/main.html" %}
+    {% block content %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <p>reason for reporting question</p>
+            {{form.report_text}}
+            <input type="submit" value="submit">
+        </form>
+    {% endblock %}

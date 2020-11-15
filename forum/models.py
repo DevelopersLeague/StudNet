@@ -66,9 +66,27 @@ class AnswerReport(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    Answer_id = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    answer_id = models.ForeignKey(Answer, on_delete=models.CASCADE)
     report_text = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return '%s' % (self.report_text)
+
+# question gets flagged after threshold or more reports
+
+
+class flaggedQuestion(models.Model):
+    question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s' % (self.question_id.question_text)
+
+
+class flaggedAnswer(models.Model):
+    answer_id = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s' % (self.answer_id.answer_text)

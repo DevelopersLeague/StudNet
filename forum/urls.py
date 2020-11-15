@@ -25,6 +25,11 @@ urlpatterns = [
     path('forum/answer/delete/<int:answer_id>',
          views.answer_delete, name='answer_delete'),
     # updates
-    path('updates/', views.updates, name="updates")
+    path('updates/', views.updates, name="updates"),
+    # reports
+    path('forum/question/report/<int:id>/',
+         views.question_report, name="question_report"),
+    path('forum/answer/report/<int:id>/',
+         views.answer_report, name="answer_report")
 
 ]

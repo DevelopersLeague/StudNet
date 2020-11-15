@@ -23,3 +23,15 @@ class AnswerCreateForm(ModelForm):
     class Meta:
         model = Answer
         fields = ['answer_text']
+
+
+class QuestionReportForm(ModelForm):
+    class Meta:
+        model = QuestionReport
+        fields = ['report_text']
+
+
+class AnswerReportForm(ModelForm):
+    class Meta:
+        model = AnswerReport
+        fields = ['report_text']

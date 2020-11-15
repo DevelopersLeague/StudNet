@@ -226,7 +226,6 @@ def answer_delete(request, answer_id):
         raise Http404("page not found")
 
 # updates ----------------------------------------------------------------------
-# login is not required to see updates
 
 
 @login_required(login_url='login')
@@ -235,4 +234,67 @@ def updates(request):
     context = {'updates': updates}
     return render(request, 'forum/updates.html', context)
 
-# searching --------------------------------------------------------------------
+# reports --------------------------------------------------------------------
+
+
+@login_required(login_url='login')
+def question_report(request, id):
+    question = Question.objects.get(id=id)
+    form = QuestionReportForm()
+    errors = list()
+    threshold = 1
+    # check of a report already filed by the same user for the same question
+    prev_report = QuestionReport.objects.filter(
+        question_id=question.id, user_id=request.user.id)
+    # if already done
+    if len(prev_report) >= 1:
+        errors.append("question already reported")
+        return redirect("question_display", id=question.id)
+    # else (new report)
+    elif request.method == "POST":
+        total_reports = QuestionReport.objects.filter(question_id=question.id)
+        if len(total_reports) >= threshold:
+            flagged_question = flaggedQuestion()
+            flagged_question.question_id = question
+            flagged_question.save()
+
+        form = QuestionReportForm(request.POST)
+        if form.is_valid():
+            report = form.save(commit=False)
+            report.user_id = request.user
+            report.question_id = question
+            report.save()
+            return redirect("question_display", id=question.id)
+    context = {'form': form, 'errors': errors}
+    return render(request, "forum/question_report.html", context)
+
+
+@login_required(login_url='login')
+def answer_report(request, id):
+    answer = Answer.objects.get(id=id)
+    form = AnswerReportForm()
+    errors = list()
+    threshold = 1
+    # check of a report already filed by the same user for the same question
+    prev_report = AnswerReport.objects.filter(
+        answer_id=answer.id, user_id=request.user.id)
+    # if already done
+    if len(prev_report) >= 1:
+        errors.append("question already reported")
+        return redirect("question_display", id=answer.question_id.id)
+    # else (new report)
+    elif request.method == "POST":
+        form = AnswerReportForm(request.POST)
+        if form.is_valid():
+            report = form.save(commit=False)
+            report.user_id = request.user
+            report.answer_id = answer
+            report.save()
+        total_reports = AnswerReport.objects.filter(answer_id=answer.id)
+        if len(total_reports) >= threshold:
+            flagged_answer = flaggedAnswer()
+            flagged_answer.answer_id = answer
+            flagged_answer.save()
+            return redirect("question_display", id=answer.question_id.id)
+    context = {'form': form, 'errors': errors}
+    return render(request, "forum/answer_report.html", context)

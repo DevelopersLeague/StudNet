@@ -15,6 +15,7 @@
             </form>
         {% endif %}
         <p><a href="{% url 'answer_create' question.id %}">answer this question</a></p>
+        <p><a href="{% url 'question_report' question.id %}">report this question</a></p>
 
     </div>
 
@@ -23,6 +24,7 @@
         <div class="answer">
             <p>{{answer.answer_text}}</p>
             <p>answered by: {{answer.user_id}}</p>
+            <p><a href="{% url 'answer_report' answer.id %}">report this answer</a></p>
 
             {% if current_user == answer.user_id %}
                 <a href="{% url 'answer_update' answer.id %}">update</a>
