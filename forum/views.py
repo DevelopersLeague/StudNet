@@ -252,18 +252,19 @@ def question_report(request, id):
         return redirect("question_display", id=question.id)
     # else (new report)
     elif request.method == "POST":
-        total_reports = QuestionReport.objects.filter(question_id=question.id)
-        if len(total_reports) >= threshold:
-            flagged_question = flaggedQuestion()
-            flagged_question.question_id = question
-            flagged_question.save()
-
+        # create a new report
         form = QuestionReportForm(request.POST)
         if form.is_valid():
             report = form.save(commit=False)
             report.user_id = request.user
             report.question_id = question
             report.save()
+        # check if the question needs to be flagged
+        total_reports = QuestionReport.objects.filter(question_id=question.id)
+        if len(total_reports) >= threshold:
+            flagged_question = flaggedQuestion()
+            flagged_question.question_id = question
+            flagged_question.save()
             return redirect("question_display", id=question.id)
     context = {'form': form, 'errors': errors}
     return render(request, "forum/question_report.html", context)
@@ -284,14 +285,16 @@ def answer_report(request, id):
         return redirect("question_display", id=answer.question_id.id)
     # else (new report)
     elif request.method == "POST":
+        # file a new report
         form = AnswerReportForm(request.POST)
         if form.is_valid():
             report = form.save(commit=False)
             report.user_id = request.user
             report.answer_id = answer
             report.save()
+        # check if the question needs to be flagged
         total_reports = AnswerReport.objects.filter(answer_id=answer.id)
-        if len(total_reports) >= threshold:
+        if len(total_reports) == threshold:
             flagged_answer = flaggedAnswer()
             flagged_answer.answer_id = answer
             flagged_answer.save()
