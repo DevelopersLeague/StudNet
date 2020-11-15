@@ -65,6 +65,8 @@ def logoutUser(request):
 
 
 def landingPage(request):
+    if request.user.is_authenticated:
+        return redirect("forum", page=1)
     return render(request, 'forum/landingPage.html', {})
 
 # @login_required(login_url='landing')
@@ -92,6 +94,11 @@ def forum(request, page):
         max_page = len(questions)//10
     else:
         max_page = len(questions)//10 + 1
+    # if no questions
+    if len(questions) == 0:
+        min_index = 0
+        max_index = 0
+        max_page = 1
     context = {'questions': questions[min_index:max_index+1],
                'next_page': min(page+1, max_page),
                'previous_page': max(page-1, 1),
