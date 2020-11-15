@@ -1,0 +1,13 @@
+{% extends "forum/main.html" %}
+    {% block content %}
+        <h1>profile</h1>
+        <h2>my questions</h2>
+        {% for question in questions %}
+            <p><a href="{% url  'question_display' question.id %}">{{question.question_text}}</a></p>
+        {% endfor %}
+        <h2>my answers</h2>
+        {% for answer in answers %}
+            <p>question: {{answer.question_id.question_text}}</p>
+            <p><a href="{% url  'question_display' answer.question_id.id %}">answer: {{answer.answer_text}}</a></p>
+        {% endfor %}
+    {% endblock %}

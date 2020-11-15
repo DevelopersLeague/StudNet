@@ -308,3 +308,11 @@ def answer_report(request, id):
             return redirect("question_display", id=answer.question_id.id)
     context = {'form': form, 'errors': errors}
     return render(request, "forum/answer_report.html", context)
+
+# profile ---------------------------------------------------------------------
+@login_required(login_url='login')
+def profile(request):
+    questions = Question.objects.filter(user_id = request.user.id).order_by('-created_on')
+    answers = Answer.objects.filter(user_id = request.user.id).order_by('-created_on')
+    context = {'questions':questions, 'answers':answers}
+    return render(request,"forum/profile.html",context)

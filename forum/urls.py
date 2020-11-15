@@ -30,6 +30,8 @@ urlpatterns = [
     path('forum/question/report/<int:id>/',
          views.question_report, name="question_report"),
     path('forum/answer/report/<int:id>/',
-         views.answer_report, name="answer_report")
+         views.answer_report, name="answer_report"),
+    # profile
+    path('profile/', views.profile, name="profile")
 
 ]
