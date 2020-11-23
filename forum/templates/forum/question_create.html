@@ -1,15 +1,43 @@
 {% extends "forum/main.html" %}
     {% block content %}
-        <form action="" method="POST">
-            {% csrf_token %}
-            <p>
-                {{form.category_id.label}}
-                {{form.category_id}}
-            </p>
-            <p>
-                {{form.question_text.label}}
-                {{form.question_text}}
-            </p>
-            <input type="submit" value="submit">
-        </form>
+
+        
+            
+            
+        <!-- <input type="submit" value="submit"> -->
+        <!-- </form> -->
+        <div class="container mt-3">
+    <!-- ask question card starts here -->
+        <div class="card gedf-card">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="card-header">
+
+                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Have a question? Ask it!!</a>
+                        </li>
+                        <li class="nav-item active px-3 mx-3 mt-1 mb-0">
+                            <p class="mb-0 pb-0">
+                            {{form.category_id.label}}
+                            {{form.category_id}}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                            <div class="form-group">
+                                <label class="sr-only" for="message">post</label>
+                                <!-- <textarea class="form-control" id="message" rows="3" placeholder="...."></textarea> -->
+                                {{form.question_text.label}}
+                                {{form.question_text}}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block col-md-3 mx-auto">Ask</input>
+                </div>
+            </form>
+        </div>
     {% endblock %}
