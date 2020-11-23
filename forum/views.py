@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages  # for flash messages
@@ -315,4 +315,12 @@ def profile(request):
     questions = Question.objects.filter(user_id = request.user.id).order_by('-created_on')
     answers = Answer.objects.filter(user_id = request.user.id).order_by('-created_on')
     context = {'questions':questions, 'answers':answers}
-    return render(request,"forum/profile.html",context)
+    return render(request, "forum/profile.html", context)
+    
+
+def autosuggest(request):
+    query_original = request.GET.get('term')
+    queryset = Question.objects.filter(question_text__icontains=query_original)
+    mylist = []
+    mylist += [x.question_text for x in queryset]
+    return JsonResponse(mylist, safe=False)

@@ -1,30 +1,69 @@
 {% extends "forum/main.html" %} 
     {% block content %} 
-        <h1>Questions page</h1>
-        <h2><a href="{% url 'question_create' %}">ask a question</a></h2>
-
+    <div class="container">
         <!-- searching -->
-        <div class="search-form">
-            <form action="" method="GET">
-                {% csrf_token %}
-                <p>category</p>
-                {{question_filter.form.category_id}}
-                <p>search questions</p>
-                {{question_filter.form.question_text}}
-                <input type="submit" value="search">
+        <form action="" method="GET">
+        <div class="row mt-4 mx-auto">
+            <!-- <div class="search-form"> -->
+                
+                    {% csrf_token %}
+                    <div class="col-md-4 ml-5">
+                        Search by category 
+                        {{question_filter.form.category_id}}
+                    </div>
+                    <div class="col-md-4">
+                        search questions
+                        <!-- <p> -->
+                        {{question_filter.form.question_text}}
+                        <!-- </p> -->
+                        <!-- <input type="submit" value="search"> -->
+                        
+                    </div>
+                    <div class="col-md-2 ml-3">
+                        <button class="btn btn-success btn-sm btn-block" type="submit">Search</button>
+                    </div>
+                
+            <!-- </div> -->
+        </div>
+        <hr>
+        </form>
+        <!-- searching ends -->
+
+        <!-- ask a question starts -->
+        
+        <div class="card gedf-card col-md-8 mx-auto">
+               
+                <div class="card-header bg-white">
+                    <a type="button" class="btn btn-primary btn-block " href="{% url 'question_create' %}">ask a question</a>
+                </div>
+                
             </form>
         </div>
+        <hr>
 
-        <!-- question listing -->
-        {% for question in questions%}
-            <div class="question">
-                <h2><a href="{% url 'question_display' question.id %}">{{question.question_text}}</a></h2>
-                <p>asked by: {{question.user_id}}</p>
+        <!-- <div class="row"> -->
+        <h2 class="text-dark font-weight-bold text-center mt-4">Recent questions</h2>
+            {% for question in questions %}
+            <div class="card my-3 col-md-10 mx-auto">
+                <div class="card-body">
+                    <a class="card-link">
+                        <h5 class="card-title"> <a href="{% url 'question_display' question.id %}" class="text-black">{{question.question_text}}</a></h5>
+                    </a>
+                    <div class="text-dark">
+                        asked by: <span class="badge badge-primary">{{question.user_id}}</span>
+                    </div>
+                </div>
             </div>
-        {% endfor %} 
-        <div class="navigation">
-            <a href="{% url 'forum' previous_page %}">previous</a>
-            <a href="{% url 'forum' next_page %}">next</a>
+        {% endfor %}
+        <!-- </div> -->
+
+        <div class="col-md-2 mb-5 mx-auto">
+            <a href="{% url 'forum' previous_page %}" type="button" class="btn btn-info btn-sm ml-1">previous</a>
+            <a href="{% url 'forum' next_page %}" type="button" class="btn btn-info btn-sm ml-2">next</a>
         </div>
 
-    {% endblock %}
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        {% endblock %}
+    </div>

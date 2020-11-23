@@ -32,6 +32,8 @@ urlpatterns = [
     path('forum/answer/report/<int:id>/',
          views.answer_report, name="answer_report"),
     # profile
-    path('profile/', views.profile, name="profile")
+    path('profile/', views.profile, name="profile"),
 
+     path("autosuggest/", views.autosuggest, name="autosuggest"),
 ]
+

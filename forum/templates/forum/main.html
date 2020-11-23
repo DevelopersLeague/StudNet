@@ -4,23 +4,50 @@
 <html>
 <head>
 	<title>Student Portal</title>
+	<!--  
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+-->
+<!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
-
 	<!-- font-awesome -->
+	<!-- 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
       integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
       crossorigin="anonymous"
-    />
-    
+	/>
+	 -->
+	<!-- Bootstrap CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"}>
+  
+  <!-- Custom fonts and icons -->
+  <link href = "{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href= "{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- jquery autocomplete css -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- .autocomplete -->
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<style>
+	
+	
+	#id_answer_text{
+		margin: 20px;
+		width: 96%;
+		margin-right: 20px;
+	}
+	</style>
 
 </head>
 <body>
 	{% comment %} {%  include 'forum/navbar.html' %} {% endcomment %}
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-light">
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
    	 <span class="navbar-toggler-icon"></span>
   	</button>
@@ -29,20 +56,17 @@
 		<li class="nav-item active">
 			<a class="nav-link" href="{% url 'forum' 1 %}">Forum</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#">Experiences</a>
+		<li class="nav-item active">
+			<a class="nav-link" href="{% url 'updates' %}">Updates</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="{% url 'updates' %}">updates</a>
-		</li>
-		<li class="nav-item">
+		<li class="nav-item active">
 			<a class="nav-link" href="{% url 'profile' %}">Profile</a>
 		</li>
 		</ul>
   	</div>
 
   <span class="msg">Hello, {{request.user}}</span>
-  <span ><a  class="msg" href="{% url 'logout' %}">Logout</a></span>
+  <span ><a class="msg ml-3 mr-3" href="{% url 'logout' %}">Logout</a></span>
 
 </nav>
 	<div class="container-fluid">
@@ -51,10 +75,16 @@
 		
 	{% endblock %}
     </div>
-	
+	<script type="text/javascript">
+    $( function() {
+      $( "#id_question_text" ).autocomplete({
+      	source: "{% url 'autosuggest' %}"
+    });
+  	});
+    </script>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>

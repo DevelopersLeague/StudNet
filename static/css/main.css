@@ -2,19 +2,23 @@
 }
 
 body{
-    background-color: #ebeff5;
+    background-color: #cedef8 ;
+}
+/* */
+.navbar{
+    background-color: #111e6c !important;
+    color: #ffffff;
+}
+
+.msg{
+    color: #ffffff;
 }
 
 
-#total-orders{
-    background-color: #4cb4c7;
+.card-title .card-body{
+    color: #343a40 !important;
 }
 
-
-#orders-delivered{
-    background-color: #7abecc;
-}
-
-#orders-pending{
-    background-color: #7CD1C0;
+.nav-link{
+    color: #ffffff !important;
 }
