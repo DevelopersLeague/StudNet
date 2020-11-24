@@ -1,12 +1,6 @@
 {% extends "forum/main.html" %}
     {% block content %}
-        <form action="" method="POST">
-            {% csrf_token %}
-            <p>reason for reporting answer</p>
-            
-            <input type="submit" value="submit">
-        </form>
-
+        
         <style>
         #id_report_text{
             margin: 20px;
@@ -37,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block col-md-3 mx-auto">Ask</input>
+                    <button type="submit" class="btn btn-danger btn-block col-md-3 mx-auto">Report</input>
                 </div>
             </form>
         </div>

@@ -1,6 +1,7 @@
-#logo{
+#logoutBtn{
+    border-radius: 7px;
+    text-decoration: none;
 }
-
 body{
     background-color: #cedef8 ;
 }
