@@ -268,7 +268,7 @@ def question_report(request, id):
             report.save()
         # check if the question needs to be flagged
         total_reports = QuestionReport.objects.filter(question_id=question.id)
-        if len(total_reports) >= threshold:
+        if len(total_reports) == threshold:
             flagged_question = flaggedQuestion()
             flagged_question.question_id = question
             flagged_question.save()
