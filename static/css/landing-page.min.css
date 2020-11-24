@@ -137,15 +137,17 @@ footer .footer
 }
 
 .sign-up{
-    padding: 0.8em;
+    padding: 1.1em;
     margin-top: 2em;
     font-size: 1.2rem;
+    margin-left: 2rem !important;
 }
 
 .log-in{
-    padding: 0.8em;
+    padding: 1.1em;
     margin-top: 2em;
     font-size: 1.2rem;
+    /* margin-left: 3rem !important; */
 }
 
 @media (min-width: 375px) {
