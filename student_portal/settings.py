@@ -138,6 +138,12 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'formatter': 'file',
             'filename': './request_log.log'
+        },
+        'custom_db_handler': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': './custom_db_log.log'
         }
     },
     'loggers': {
@@ -152,6 +158,10 @@ LOGGING = {
         'django.request': {
             'level': 'DEBUG',
             'handlers': ['request_log']
+        },
+        'forum.custom.db':{
+            'level': 'DEBUG',
+            'handlers': ['custom_db_handler']
         }
     }
 }
