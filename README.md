@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/DevelopersLeague/StudentPortal/blob/master/Screenshots/StudNet.PNG" width="280px" alt="StudNet" title="StudNet"/>
+  <img src="https://github.com/DevelopersLeague/StudentPortal/blob/master/Screenshots/StudNet.PNG" width="580px" alt="StudNet" title="StudNet"/>
 </p>
 
 
@@ -7,6 +7,7 @@
 
 - [Try it out](#try-it-out)
 - [How to use](#how-to-use)
+- [Tech-Stack](#tech-stack)
 - [Screenshot](#screenshot)
 - [Contributing](#contributing)
 - [Contact us](#contact-us)
@@ -18,7 +19,24 @@
 
 ## How to use
 
-To be written
+- Clone repository.
+- Setup virtual environment
+- Exceute `pip install -r requirements.txt`.
+- run `python manage.py runserver`.
+- Go to `127.0.0.1::8000` in your preferred web browser.
+
+## Tech-Stack
+
+- Frontend
+	- HTML5
+	- CSS3
+	- JQuery
+  - Bootstrap4
+- Backend
+  - Django framework
+- Database
+  - SQLite
+
 
 ## Screenshot
 
