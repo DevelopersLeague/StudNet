@@ -1,9 +1,48 @@
-# college student portal
-a group project created as the mini project assignment for semester 2.
+<p align="center">
+  <img src="https://github.com/DevelopersLeague/StudentPortal/blob/master/Screenshots/StudNet.PNG" width="280px" alt="StudNet" title="StudNet"/>
+</p>
 
-this is a student portal that allows students of a college to ask questions and seek help from peers.
 
-to run the project locally do\
--$ pip install -r requirements.txt\
--$ python manage.py runserver
+## StudNet
 
+- [Try it out](#try-it-out)
+- [How to use](#how-to-use)
+- [Screenshot](#screenshot)
+- [Contributing](#contributing)
+- [Contact us](#contact-us)
+- [Support](#support)
+
+## Try it out
+
+[To be deployed](https://)
+
+## How to use
+
+To be written
+
+## Screenshot
+
+![To be added](https:)
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request if you have a way to improve this project.
+
+Make sure your request is meaningful and you have tested the app locally before submitting a pull request.
+
+## Contact us
+
+<p align="right">
+
+### Aniket More
+  <a href="https://www.linkedin.com/in/aniket-more-2b97571b1"><img alt="LinkedIn" title="LinkedIn" src="https://img.shields.io/badge/-LinkedIn-1DA1F2?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+</p>
+
+### Shyren More
+<p align="left">
+  <a href="https://www.linkedin.com/in/shyrenmore"><img alt="LinkedIn" title="LinkedIn" src="https://img.shields.io/badge/-LinkedIn-1DA1F2?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+</p>
+
+## Support
+
+💙 If you like this project, give it a ⭐ and share it with friends!
