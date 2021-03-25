@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.forms import UserCreationForm
@@ -7,12 +8,14 @@ from .models import *
 from .filters import *
 # from .forms import CreateUserForm
 from .forms import *
+import logging
+custom_db_logger = logging.getLogger("forum.custom.db")
 
 
 # for restricting users without login
-from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
 
 def registerPage(request):
     if request.user.is_authenticated:
@@ -172,6 +175,7 @@ def question_delete(request, id):
         question = Question.objects.get(id=id)
         if(request.user != question.user_id):
             return redirect("question_display", id=id)
+        custom_db_logger.debug("%s deleted the question \"%s\""%(request.user, question))
         question.delete()
         return redirect('forum', page=1)
     else:
@@ -225,6 +229,7 @@ def answer_delete(request, answer_id):
         current_question_id = answer.question_id.id
         if(request.user != answer.user_id):
             return redirect("question_display", id=current_question_id)
+        custom_db_logger.debug("%s deleted the answer \"%s\""%(request.user, answer))
         answer.delete()
         return redirect('question_display', id=current_question_id)
     else:
@@ -309,13 +314,17 @@ def answer_report(request, id):
     return render(request, "forum/answer_report.html", context)
 
 # profile ---------------------------------------------------------------------
+
+
 @login_required(login_url='login')
 def profile(request):
-    questions = Question.objects.filter(user_id = request.user.id).order_by('-created_on')
-    answers = Answer.objects.filter(user_id = request.user.id).order_by('-created_on')
-    context = {'questions':questions, 'answers':answers}
+    questions = Question.objects.filter(
+        user_id=request.user.id).order_by('-created_on')
+    answers = Answer.objects.filter(
+        user_id=request.user.id).order_by('-created_on')
+    context = {'questions': questions, 'answers': answers}
     return render(request, "forum/profile.html", context)
-    
+
 
 def autosuggest(request):
     query_original = request.GET.get('term')
