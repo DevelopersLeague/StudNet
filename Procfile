@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath student_portal.wsgi
