@@ -22,6 +22,7 @@
 - Clone repository.
 - Setup virtual environment
 - Exceute `pip install -r requirements.txt`.
+- run `python manage.py migrate`
 - run `python manage.py runserver`.
 - Go to `127.0.0.1::8000` in your preferred web browser.
 
