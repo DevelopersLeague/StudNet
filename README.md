@@ -15,7 +15,7 @@
 
 ## Try it out
 
-[To be deployed](https://)
+[live demo](https://stud-net.herokuapp.com/)
 
 ## How to use
 
