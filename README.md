@@ -16,7 +16,7 @@
 ## Try it out
 
 [live demo](https://stud-net.herokuapp.com/)\
-test user username: test_user
+test user username: test_user\
 test user password: testuserpassword
 
 ## How to use
