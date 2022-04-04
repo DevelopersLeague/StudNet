@@ -25,9 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'vv!5u9ew!9n)5fyb@(=wh(cr3g0psganm_t6_xy!8672(#)$3t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'stud-net.herokuapp.com']
+# ALLOWED_HOSTS = ['django-env.eba-mdmyzmku.us-west-2.elasticbeanstalk.com',
+#                  '127.0.0.1', 'stud-net.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,11 +81,26 @@ WSGI_APPLICATION = 'student_portal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+#         'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+        'ENGINE': 'django.db.backends.postgresql',
+
+        'NAME': 'studnet',
+
+        'USER': 'postgres',
+
+        'PASSWORD': 'postgres',
+
+        'HOST': 'database-studnet.cv5lzmfgtyve.ap-south-1.rds.amazonaws.com',
+
+        'PORT': '5432',
     }
 }
 
